@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JMC INTERNATIONAL - Phone Spare Parts</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* Custom CSS for body font and smooth scrolling */
+        body {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+            background-color: #0f172a; /* Dark blue-gray background */
+            color: #e2e8f0; /* Light text color */
+        }
+        /* Custom scrollbar for better aesthetics */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #1e293b;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #6d28d9; /* Purple */
+            border-radius: 5px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #7c3aed;
+        }
+        /* Overlay for modals */
+        .modal-overlay {
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 99; /* Below modal content */
+        }
+        /* Modal content styling */
+        .modal-content {
+            z-index: 100; /* Above overlay */
+        }
+        /* Animation for fade-in effect */
+        .fade-in {
+            animation: fadeIn 0.5s ease-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-gray-200">
+
+    <header class="bg-gray-800 shadow-lg sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-4 flex flex-col md:flex-row justify-between items-center">
+            <a href="#" class="text-4xl font-extrabold text-purple-500 mb-4 md:mb-0">
+                JMC INTERNATIONAL
+            </a>
+            <nav class="flex flex-wrap justify-center gap-6 text-lg">
+                <a href="#home" class="hover:text-purple-400 transition-colors duration-300 px-4 py-2 rounded-lg">Home</a>
+                <a href="#products" class="hover:text-purple-400 transition-colors duration-300 px-4 py-2 rounded-lg">Products</a>
+                <a href="#about" class="hover:text-purple-400 transition-colors duration-300 px-4 py-2 rounded-lg">About Us</a>
+                <a href="#contact" class="hover:text-purple-400 transition-colors duration-300 px-4 py-2 rounded-lg">Contact</a>
+                <button id="cart-button" class="relative bg-purple-600 hover:bg-purple-700 text-white font-semibold py-2 px-4 rounded-lg shadow-md transition-all duration-300 transform hover:scale-105">
+                    Cart (<span id="cart-count">0</span>)
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 py-8">
+
+        <section id="home" class="text-center py-20 bg-gradient-to-br from-gray-800 to-gray-900 rounded-xl shadow-2xl mb-12">
+            <h1 class="text-5xl md:text-7xl font-extrabold text-white mb-6 animate-pulse">
+                Your Trusted Source for Phone Spare Parts
+            </h1>
+            <p class="text-xl md:text-2xl text-gray-300 mb-10 max-w-3xl mx-auto">
+                Discover high-quality replacement parts for all major phone brands. Fast shipping, reliable service.
+            </p>
+            <a href="#products" class="bg-purple-600 hover:bg-purple-700 text-white font-bold py-4 px-8 rounded-full text-xl shadow-lg transform transition-transform duration-300 hover:scale-105">
+                Explore Products
+            </a>
+        </section>
+
+        <section class="mb-12">
+            <div class="max-w-2xl mx-auto">
+                <input type="text" id="search-input" placeholder="Search for parts (e.g., iPhone screen, Samsung battery)..."
+                       class="w-full px-6 py-4 bg-gray-700 border border-gray-600 rounded-full text-white text-lg focus:outline-none focus:ring-2 focus:ring-purple-500 shadow-md">
+            </div>
+        </section>
+
+        <section id="categories" class="py-12">
+            <h2 class="text-4xl font-bold text-center text-purple-400 mb-10">Popular Categories</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="bg-gray-800 rounded-xl shadow-lg p-6 text-center transform transition-transform duration-300 hover:scale-105 hover:shadow-xl">
+                    <img src="https://placehold.co/100x100/374151/ffffff?text=Screen" alt="Screens" class="mx-auto mb-4 rounded-full">
+                    <h3 class="text-2xl font-semibold text-white mb-2">Screens</h3>
+                    <p class="text-gray-400">High-resolution displays for all models.</p>
+                </div>
+                <div class="bg-gray-800 rounded-xl shadow-lg p-6 text-center transform transition-transform duration-300 hover:scale-105 hover:shadow-xl">
+                    <img src="https://placehold.co/100x100/374151/ffffff?text=Battery" alt="Batteries" class="mx-auto mb-4 rounded-full">
+                    <h3 class="text-2xl font-semibold text-white mb-2">Batteries</h3>
+                    <p class="text-gray-400">Long-lasting power solutions.</p>
+                </div>
+                <div class="bg-gray-800 rounded-xl shadow-lg p-6 text-center transform transition-transform duration-300 hover:scale-105 hover:shadow-xl">
+                    <img src="https://placehold.co/100x100/374151/ffffff?text=Camera" alt="Cameras" class="mx-auto mb-4 rounded-full">
+                    <h3 class="text-2xl font-semibold text-white mb-2">Cameras</h3>
+                    <p class="text-gray-400">Front and rear camera modules.</p>
+                </div>
+                <div class="bg-gray-800 rounded-xl shadow-lg p-6 text-center transform transition-transform duration-300 hover:scale-105 hover:shadow-xl">
+                    <img src="https://placehold.co/100x100/374151/ffffff?text=Charging" alt="Charging Ports" class="mx-auto mb-4 rounded-full">
+                    <h3 class="text-2xl font-semibold text-white mb-2">Charging Ports</h3>
+                    <p class="text-gray-400">Reliable charging port replacements.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="products" class="py-12">
+            <h2 class="text-4xl font-bold text-center text-purple-400 mb-10">Our Products</h2>
+            <div id="product-list" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+                </div>
+            <div id="no-results" class="text-center text-gray-400 text-xl mt-10 hidden">No products found matching your search.</div>
+        </section>
+
+        <section id="about" class="py-12 bg-gray-800 rounded-xl shadow-lg p-8 mb-12">
+            <h2 class="text-4xl font-bold text-center text-purple-400 mb-8">About JMC INTERNATIONAL</h2>
+            <div class="max-w-3xl mx-auto text-lg text-gray-300 space-y-6">
+                <p>
+                    JMC INTERNATIONAL is your premier destination for high-quality mobile phone spare parts. We understand the importance of reliable components for your devices, which is why we meticulously source and test every product to ensure it meets the highest standards of quality and performance.
+                </p>
+                <p>
+                    Our mission is to provide an extensive range of genuine and OEM-grade spare parts for all major smartphone brands, including Apple, Samsung, Huawei, Xiaomi, and more. Whether you're a professional repair technician or a DIY enthusiast, you'll find everything you need to bring your phone back to life.
+                </p>
+                <p>
+                    At JMC INTERNATIONAL, customer satisfaction is our top priority. We offer competitive pricing, fast and secure shipping, and dedicated customer support to assist you with any queries. Trust us for all your phone repair needs!
+                </p>
+            </div>
+        </section>
+
+        <section id="contact" class="py-12 bg-gray-800 rounded-xl shadow-lg p-8">
+            <h2 class="text-4xl font-bold text-center text-purple-400 mb-8">Contact Us</h2>
+            <div class="max-w-lg mx-auto">
+                <form class="space-y-6">
+                    <div>
+                        <label for="name" class="block text-lg font-medium text-gray-200 mb-2">Name</label>
+                        <input type="text" id="contact-name" name="name"
+                               class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 text-white"
+                               placeholder="Your Name" required>
+                    </div>
+                    <div>
+                        <label for="email" class="block text-lg font-medium text-gray-200 mb-2">Email</label>
+                        <input type="email" id="contact-email" name="email"
+                               class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 text-white"
+                               placeholder="Your Email" required>
+                    </div>
+                    <div>
+                        <label for="message" class="block text-lg font-medium text-gray-200 mb-2">Message</label>
+                        <textarea id="contact-message" name="message" rows="5"
+                                  class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 text-white"
+                                  placeholder="Your message here..." required></textarea>
+                    </div>
+                    <button type="submit" class="w-full bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-6 rounded-lg text-lg shadow-md transform transition-transform duration-300 hover:scale-105">
+                        Send Message
+                    </button>
+                </form>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-gray-800 py-8 mt-12 shadow-inner">
+        <div class="container mx-auto px-4 text-center text-gray-400">
+            <p class="mb-4">&copy; <span id="current-year"></span> JMC INTERNATIONAL. All rights reserved.</p>
+            <div class="flex justify-center space-x-6">
+                <a href="#" class="hover:text-purple-400 transition-colors duration-300">Facebook</a>
+                <a href="#" class="hover:text-purple-400 transition-colors duration-300">Instagram</a>
+                <a href="#" class="hover:text-purple-400 transition-colors duration-300">Twitter</a>
+            </div>
+        </div>
+    </footer>
+
+    <div id="product-detail-modal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-75 hidden modal-overlay">
+        <div class="bg-gray-800 rounded-xl shadow-2xl p-8 w-11/12 md:w-2/3 lg:w-1/2 relative modal-content transform scale-95 opacity-0 transition-all duration-300 ease-out">
+            <button id="close-product-modal" class="absolute top-4 right-4 text-gray-400 hover:text-white text-3xl font-bold">&times;</button>
+            <div class="flex flex-col md:flex-row gap-8">
+                <img id="modal-product-image" src="" alt="Product Image" class="w-full md:w-1/2 h-64 object-cover rounded-lg shadow-lg">
+                <div class="md:w-1/2">
+                    <h3 id="modal-product-name" class="text-3xl font-bold text-white mb-4"></h3>
+                    <p id="modal-product-price" class="text-2xl text-purple-400 font-semibold mb-4"></p>
+                    <p id="modal-product-description" class="text-gray-300 text-lg mb-6"></p>
+                    <button id="modal-add-to-cart" class="bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-6 rounded-lg text-lg shadow-md transform transition-transform duration-300 hover:scale-105">
+                        Add to Cart
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="cart-modal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-75 hidden modal-overlay">
+        <div class="bg-gray-800 rounded-xl shadow-2xl p-8 w-11/12 md:w-2/3 lg:w-1/2 relative modal-content transform scale-95 opacity-0 transition-all duration-300 ease-out">
+            <button id="close-cart-modal" class="absolute top-4 right-4 text-gray-400 hover:text-white text-3xl font-bold">&times;</button>
+            <h3 class="text-3xl font-bold text-white mb-6">Your Cart</h3>
+            <div id="cart-items" class="space-y-4 max-h-96 overflow-y-auto pr-2">
+                </div>
+            <div id="cart-empty-message" class="text-center text-gray-400 text-lg mt-4 hidden">Your cart is empty.</div>
+            <div class="border-t border-gray-700 pt-4 mt-6 flex justify-between items-center">
+                <span class="text-xl font-semibold text-white">Total: <span id="cart-total" class="text-purple-400">$0.00</span></span>
+                <button id="checkout-button" class="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-lg text-lg shadow-md transform transition-transform duration-300 hover:scale-105">
+                    Proceed to Checkout
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Set current year in footer
+            document.getElementById('current-year').textContent = new Date().getFullYear();
+
+            // Sample Product Data
+            const products = [
+                { id: 1, name: 'iPhone 13 Pro Max Screen Assembly', category: 'Screens', price: 120.00, imageUrl: 'https://placehold.co/400x300/1e293b/e2e8f0?text=iPhone+13+Screen', description: 'High-quality replacement screen for iPhone 13 Pro Max. Includes digitizer and frame, ensuring perfect fit and vibrant display. Tested for durability and touch responsiveness.' },
+                { id: 2, name: 'Samsung Galaxy S21 Battery', category: 'Batteries', price: 35.50, imageUrl: 'https://placehold.co/400x300/1e293b/e2e8f0?text=S21+Battery', description: 'Original capacity battery for Samsung Galaxy S21. Restores your phone\'s battery life, preventing unexpected shutdowns. Safe and reliable.' },
+                { id: 3, name: 'Huawei P40 Pro Rear Camera Module', category: 'Cameras', price: 85.00, imageUrl: 'https://placehold.co/400x300/1e293b/e2e8f0?text=Huawei+Camera', description: 'Genuine replacement rear camera module for Huawei P40 Pro. Capture stunning photos and videos again with perfect clarity.' },
+                { id: 4, name: 'Xiaomi Mi 11 Charging Port Flex Cable', category: 'Charging Ports', price: 25.99, imageUrl: 'https://placehold.co/400x300/1e293b/e2e8f0?text=Xiaomi+Port', description: 'Replacement charging port flex cable for Xiaomi Mi 11. Fixes charging issues and ensures fast data transfer. Easy to install.' },
+                { id: 5, name: 'Google Pixel 6a Front Camera', category: 'Cameras', price: 45.00, imageUrl: 'https://placehold.co/400x300/1e293b/e2e8f0?text=Pixel+Cam', description: 'High-quality front camera replacement for Google Pixel 6a. Perfect for clear selfies and video calls.' },
+                { id: 6, name: 'OnePlus 9 Pro Back Glass Cover', category: 'Covers', price: 18.75, imageUrl: 'https://placehold.co/400x300/1e293b/e2e8f0?text=OnePlus+Back', description: 'Durable back glass cover for OnePlus 9 Pro. Restores the aesthetic appeal of your device. Available in multiple colors.' },
+                { id: 7, name: 'LG G8 ThinQ Loudspeaker Module', category: 'Audio', price: 15.00, imageUrl: 'https://placehold.co/400x300/1e293b/e2e8f0?text=LG+Speaker', description: 'Replacement loudspeaker module for LG G8 ThinQ. Ensures clear and loud audio output for calls and media.' },
+                { id: 8, name: 'Sony Xperia 1 III Power Button Flex', category: 'Buttons', price: 12.50, imageUrl: 'https://placehold.co/400x300/1e293b/e2e8f0?text=Sony+Button', description: 'Replacement power button flex cable for Sony Xperia 1 III. Fixes unresponsive power button issues.' },
+                { id: 9, name: 'iPhone 12 Mini Battery', category: 'Batteries', price: 32.00, imageUrl: 'https://placehold.co/400x300/1e293b/e2e8f0?text=iPhone+12+Battery', description: 'New battery for iPhone 12 Mini. Extends usage time and improves overall performance.' },
+                { id: 10, name: 'Samsung Galaxy A52 LCD Display', category: 'Screens', price: 75.00, imageUrl: 'https://placehold.co/400x300/1e293b/e2e8f0?text=A52+LCD', description: 'LCD display replacement for Samsung Galaxy A52. Restores vibrant colors and touch functionality.' }
+            ];
+
+            // Cart state
+            let cart = [];
+
+            // Get DOM elements
+            const productList = document.getElementById('product-list');
+            const cartCount = document.getElementById('cart-count');
+            const cartButton = document.getElementById('cart-button');
+            const cartModal = document.getElementById('cart-modal');
+            const closeCartModal = document.getElementById('close-cart-modal');
+            const cartItemsContainer = document.getElementById('cart-items');
+            const cartTotal = document.getElementById('cart-total');
+            const cartEmptyMessage = document.getElementById('cart-empty-message');
+            const checkoutButton = document.getElementById('checkout-button');
+
+            const productDetailModal = document.getElementById('product-detail-modal');
+            const closeProductModal = document.getElementById('close-product-modal');
+            const modalProductName = document.getElementById('modal-product-name');
+            const modalProductPrice = document.getElementById('modal-product-price');
+            const modalProductDescription = document.getElementById('modal-product-description');
+            const modalProductImage = document.getElementById('modal-product-image');
+            const modalAddToCartButton = document.getElementById('modal-add-to-cart');
+
+            const searchInput = document.getElementById('search-input');
+            const noResultsMessage = document.getElementById('no-results');
+
+            // Function to render products
+            function renderProducts(filteredProducts = products) {
+                productList.innerHTML = ''; // Clear existing products
+                if (filteredProducts.length === 0) {
+                    noResultsMessage.classList.remove('hidden');
+                } else {
+                    noResultsMessage.classList.add('hidden');
+                    filteredProducts.forEach(product => {
+                        const productCard = document.createElement('div');
+                        productCard.className = 'bg-gray-800 rounded-xl shadow-lg overflow-hidden transform transition-transform duration-300 hover:scale-105 hover:shadow-xl cursor-pointer';
+                        productCard.innerHTML = `
+                            <img src="${product.imageUrl}" alt="${product.name}" class="w-full h-48 object-cover rounded-t-xl" onerror="this.onerror=null;this.src='https://placehold.co/400x300/374151/ffffff?text=Image+Not+Found';">
+                            <div class="p-6">
+                                <h3 class="text-xl font-semibold text-white mb-2">${product.name}</h3>
+                                <p class="text-purple-400 text-lg font-bold mb-4">$${product.price.toFixed(2)}</p>
+                                <button class="add-to-cart-btn bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded-lg shadow-md transition-all duration-300 transform hover:scale-105" data-product-id="${product.id}">
+                                    Add to Cart
+                                </button>
+                            </div>
+                        `;
+                        productList.appendChild(productCard);
+
+                        // Event listener for opening product detail modal
+                        productCard.querySelector('img').addEventListener('click', () => openProductDetailModal(product));
+                        productCard.querySelector('h3').addEventListener('click', () => openProductDetailModal(product));
+                        productCard.querySelector('p.text-purple-400').addEventListener('click', () => openProductDetailModal(product));
+                    });
+                }
+            }
+
+            // Function to open product detail modal
+            function openProductDetailModal(product) {
+                modalProductName.textContent = product.name;
+                modalProductPrice.textContent = `$${product.price.toFixed(2)}`;
+                modalProductDescription.textContent = product.description;
+                modalProductImage.src = product.imageUrl;
+                modalProductImage.onerror = () => modalProductImage.src = 'https://placehold.co/400x300/374151/ffffff?text=Image+Not+Found';
+                modalAddToCartButton.onclick = () => {
+                    addToCart(product);
+                    closeProductDetailModal();
+                };
+
+                productDetailModal.classList.remove('hidden');
+                setTimeout(() => {
+                    productDetailModal.querySelector('.modal-content').classList.remove('scale-95', 'opacity-0');
+                    productDetailModal.querySelector('.modal-content').classList.add('scale-100', 'opacity-100', 'fade-in');
+                }, 10);
+            }
+
+            // Function to close product detail modal
+            function closeProductDetailModal() {
+                productDetailModal.querySelector('.modal-content').classList.remove('scale-100', 'opacity-100', 'fade-in');
+                productDetailModal.querySelector('.modal-content').classList.add('scale-95', 'opacity-0');
+                setTimeout(() => {
+                    productDetailModal.classList.add('hidden');
+                }, 300); // Match transition duration
+            }
+
+            // Function to add item to cart
+            function addToCart(product) {
+                const existingItem = cart.find(item => item.id === product.id);
+                if (existingItem) {
+                    existingItem.quantity++;
+                } else {
+                    cart.push({ ...product, quantity: 1 });
+                }
+                updateCartUI();
+            }
+
+            // Function to remove item from cart
+            function removeFromCart(productId) {
+                cart = cart.filter(item => item.id !== productId);
+                updateCartUI();
+            }
+
+            // Function to update cart UI
+            function updateCartUI() {
+                cartCount.textContent = cart.reduce((total, item) => total + item.quantity, 0);
+                cartItemsContainer.innerHTML = ''; // Clear current cart items
+
+                if (cart.length === 0) {
+                    cartEmptyMessage.classList.remove('hidden');
+                    checkoutButton.classList.add('opacity-50', 'cursor-not-allowed');
+                    checkoutButton.disabled = true;
+                } else {
+                    cartEmptyMessage.classList.add('hidden');
+                    checkoutButton.classList.remove('opacity-50', 'cursor-not-allowed');
+                    checkoutButton.disabled = false;
+                    cart.forEach(item => {
+                        const cartItemDiv = document.createElement('div');
+                        cartItemDiv.className = 'flex items-center justify-between bg-gray-700 p-4 rounded-lg shadow-md fade-in';
+                        cartItemDiv.innerHTML = `
+                            <div class="flex items-center">
+                                <img src="${item.imageUrl}" alt="${item.name}" class="w-16 h-16 object-cover rounded-md mr-4" onerror="this.onerror=null;this.src='https://placehold.co/64x64/374151/ffffff?text=Img';">
+                                <div>
+                                    <h4 class="text-lg font-semibold text-white">${item.name}</h4>
+                                    <p class="text-gray-400 text-sm">$${item.price.toFixed(2)} x ${item.quantity}</p>
+                                </div>
+                            </div>
+                            <button class="remove-from-cart-btn bg-red-600 hover:bg-red-700 text-white py-1 px-3 rounded-md text-sm transition-all duration-300" data-product-id="${item.id}">
+                                Remove
+                            </button>
+                        `;
+                        cartItemsContainer.appendChild(cartItemDiv);
+                    });
+                }
+
+                // Calculate total
+                const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+                cartTotal.textContent = `$${total.toFixed(2)}`;
+            }
+
+            // Event listener for "Add to Cart" buttons (delegated to product list)
+            productList.addEventListener('click', (event) => {
+                if (event.target.classList.contains('add-to-cart-btn')) {
+                    const productId = parseInt(event.target.dataset.productId);
+                    const productToAdd = products.find(p => p.id === productId);
+                    if (productToAdd) {
+                        addToCart(productToAdd);
+                    }
+                }
+            });
+
+            // Event listener for "Remove" buttons in cart (delegated to cart items container)
+            cartItemsContainer.addEventListener('click', (event) => {
+                if (event.target.classList.contains('remove-from-cart-btn')) {
+                    const productId = parseInt(event.target.dataset.productId);
+                    removeFromCart(productId);
+                }
+            });
+
+            // Event listeners for modals
+            cartButton.addEventListener('click', () => {
+                cartModal.classList.remove('hidden');
+                setTimeout(() => {
+                    cartModal.querySelector('.modal-content').classList.remove('scale-95', 'opacity-0');
+                    cartModal.querySelector('.modal-content').classList.add('scale-100', 'opacity-100', 'fade-in');
+                }, 10);
+            });
+
+            closeCartModal.addEventListener('click', () => {
+                cartModal.querySelector('.modal-content').classList.remove('scale-100', 'opacity-100', 'fade-in');
+                cartModal.querySelector('.modal-content').classList.add('scale-95', 'opacity-0');
+                setTimeout(() => {
+                    cartModal.classList.add('hidden');
+                }, 300);
+            });
+
+            closeProductModal.addEventListener('click', closeProductDetailModal);
+
+            // Close modals if overlay is clicked
+            productDetailModal.addEventListener('click', (event) => {
+                if (event.target === productDetailModal) {
+                    closeProductDetailModal();
+                }
+            });
+            cartModal.addEventListener('click', (event) => {
+                if (event.target === cartModal) {
+                    closeCartModal();
+                }
+            });
+
+            // Search functionality
+            searchInput.addEventListener('input', (event) => {
+                const searchTerm = event.target.value.toLowerCase();
+                const filteredProducts = products.filter(product =>
+                    product.name.toLowerCase().includes(searchTerm) ||
+                    product.description.toLowerCase().includes(searchTerm) ||
+                    product.category.toLowerCase().includes(searchTerm)
+                );
+                renderProducts(filteredProducts);
+            });
+
+            // Handle checkout button click (placeholder)
+            checkoutButton.addEventListener('click', () => {
+                if (cart.length > 0) {
+                    alert('Proceeding to checkout! Total: $' + cartTotal.textContent + '. (This is a demo checkout)');
+                    // In a real application, you would redirect to a payment gateway or process the order.
+                    cart = []; // Clear cart after "checkout"
+                    updateCartUI();
+                    closeCartModal();
+                } else {
+                    alert('Your cart is empty. Please add items before checking out.');
+                }
+            });
+
+            // Initial render of products and cart UI
+            renderProducts();
+            updateCartUI();
+        });
+    </script>
+</body>
+</html>
